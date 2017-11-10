@@ -8,11 +8,6 @@ public class BodySourceView : MonoBehaviour
 {
     public Material BoneMaterial;
     public GameObject BodySourceManager;
-
-    public GameObject Pumpkin;
-    public GameObject Candy;
-
-
     public GameObject Title;
     public bool startFlg = false;
     private bool ONE = true;
@@ -25,12 +20,12 @@ public class BodySourceView : MonoBehaviour
     private Dictionary<ulong, GameObject> _Bodies = new Dictionary<ulong, GameObject>();
     private BodySourceManager _BodyManager;
 
-    private float x = 0;
-    private float y = 0;
-    private float z = 0;
+    private short treeFlg = 0; //ツリー出現までのフラグ…　0＝なにもしていない、1＝両手を合わせた、2＝手の座標が頭を超える
+    private bool xmasBoxFlg = false; //一旦ばんざいさせてから
+
+
 
     public float timeElapsed = 0;
-    public int batcnt = 0;
 
     public float len = 0;
     public float len2 = 0;
@@ -77,12 +72,8 @@ public class BodySourceView : MonoBehaviour
 
     void Start()
     {
-        //タイトルスタートの初期化
-        Title.SetActive(true);
-        FindObjectOfType<Title>().circle.SetActive(true);
-        FindObjectOfType<Title>().gage.SetActive(true);
-        startFlg = false;
-        ONE = true;
+        treeFlg = 0;
+        xmasBoxFlg = false;
 
     }
 
@@ -175,44 +166,13 @@ public class BodySourceView : MonoBehaviour
             SceneManager.LoadScene("MainScene");
         }
 
-        Debug.Log((bodyPos[(int)Kinect.JointType.SpineBase]));
+        //Debug.Log((bodyPos[(int)Kinect.JointType.SpineBase]));
 
         if (bodyTrg == true)
         {
-
-            
-            
-            //startFlgがfalseならTitle関数のみ起動elseならmain部分の関数起動
-            if(startFlg == false)
-            {
-                TitlePause();
-            }
-
-            if (startFlg == true)
-            {
-                if (ONE)
-                {
-                    //各タイトルに関連する部分のオブジェクトの表示管理
-                    Title.SetActive(false);
-                    FindObjectOfType<Title>().circle.SetActive(false);
-                    FindObjectOfType<Title>().gage.SetActive(false);
-                    ONE = false;
-                }
-                
-                PumpkinCreate();
-
-                CandyCreate();
-
-                BatsCreateR();
-
-                BatsCreateL();
-
-                GhostCreate();
-
-                FireCreate();
-
-                ShineCreate();
-            }
+            TreeCreate();
+            SnowManCreate();
+            XmasBoxCreate();
         }
 
     }
@@ -307,138 +267,75 @@ public class BodySourceView : MonoBehaviour
         return new Vector3(joint.Position.X * 10, joint.Position.Y * 10, joint.Position.Z * 10);
     }
 
-    //右手に集まってくるコウモリを出現させる
-    void BatsCreateR()
+    //クリスマスツリー出現
+    void TreeCreate()
     {
-        //がおーポーズ(右手が上)
-        if (bodyPos[(int)Kinect.JointType.HandRight].x >= bodyPos[(int)Kinect.JointType.SpineBase].x &&
+        //右手と左手の座標を二点間で代入
+        len = ((bodyPos[(int)Kinect.JointType.HandRight].x- bodyPos[(int)Kinect.JointType.HandLeft].x)* (bodyPos[(int)Kinect.JointType.HandRight].x - bodyPos[(int)Kinect.JointType.HandLeft].x)+
+                (bodyPos[(int)Kinect.JointType.HandRight].y - bodyPos[(int)Kinect.JointType.HandLeft].y)*( bodyPos[(int)Kinect.JointType.HandRight].y - bodyPos[(int)Kinect.JointType.HandLeft].y));
+        Debug.Log(treeFlg);
+        //右手と左手の座標が近い場合
+        if (Mathf.Sqrt(len)<= 0.1f)
+        {
+            treeFlg = 1;
+        }
+        else
+        {
+           // treeFlg = 0;
+        }
+
+        //右手と左手が合わさった状態で両手の座標が頭を越したとき
+        if (treeFlg == 1&&
             bodyPos[(int)Kinect.JointType.HandRight].y >= bodyPos[(int)Kinect.JointType.Head].y &&
-            bodyPos[(int)Kinect.JointType.HandRight].y <= bodyPos[(int)Kinect.JointType.Head].y + 1 &&
-            bodyPos[(int)Kinect.JointType.HandLeft].x <= bodyPos[(int)Kinect.JointType.SpineBase].x &&
-            bodyPos[(int)Kinect.JointType.HandLeft].y <= bodyPos[(int)Kinect.JointType.SpineMid].y)
-        {
-            FindObjectOfType<Spone>().trgBatsR = true;
-            //Debug.Log("いいぞ。");
-        }
-        else
-        {
-            FindObjectOfType<Spone>().trgBatsR = false;
-        }
-    }
-
-    //左手に集まってくるコウモリを出現させる
-    void BatsCreateL()
-    {
-        //がおーポーズ(左手が上)
-        if (bodyPos[(int)Kinect.JointType.HandLeft].x <= bodyPos[(int)Kinect.JointType.SpineBase].x &&
-            bodyPos[(int)Kinect.JointType.HandLeft].y >= bodyPos[(int)Kinect.JointType.Head].y &&
-            bodyPos[(int)Kinect.JointType.HandLeft].y <= bodyPos[(int)Kinect.JointType.Head].y + 1 &&
-            bodyPos[(int)Kinect.JointType.HandRight].x >= bodyPos[(int)Kinect.JointType.SpineBase].x &&
-            bodyPos[(int)Kinect.JointType.HandRight].y <= bodyPos[(int)Kinect.JointType.SpineMid].y)
-        {
-            FindObjectOfType<Spone>().trgBatsL = true;
-
-        }
-        else
-        {
-            FindObjectOfType<Spone>().trgBatsL = false;
-        }
-    }
-
-    //オバケを出現させる
-    void GhostCreate()
-    {
-        //おばけポーズ
-        if (bodyPos[(int)Kinect.JointType.HandRight].x >= bodyPos[(int)Kinect.JointType.SpineBase].x &&
-            bodyPos[(int)Kinect.JointType.HandRight].y >= bodyPos[(int)Kinect.JointType.SpineMid].y &&
-            bodyPos[(int)Kinect.JointType.HandLeft].x <= bodyPos[(int)Kinect.JointType.SpineBase].x &&
-            bodyPos[(int)Kinect.JointType.HandLeft].y >= bodyPos[(int)Kinect.JointType.SpineMid].y &&
-            bodyPos[(int)Kinect.JointType.HandRight].y <= bodyPos[(int)Kinect.JointType.Neck].y &&
-            bodyPos[(int)Kinect.JointType.HandLeft].y <= bodyPos[(int)Kinect.JointType.Neck].y &&
-            bodyPos[(int)Kinect.JointType.HandRight].x <= bodyPos[(int)Kinect.JointType.ShoulderRight].x &&
-            bodyPos[(int)Kinect.JointType.HandLeft].x >= bodyPos[(int)Kinect.JointType.ShoulderLeft].x &&
-            bodyPos[(int)Kinect.JointType.HandTipRight].y <= bodyPos[(int)Kinect.JointType.HandRight].y + 1 &&
-            bodyPos[(int)Kinect.JointType.HandTipLeft].y <= bodyPos[(int)Kinect.JointType.HandLeft].y + 1||
-            Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            FindObjectOfType<Spone>().trgGhost = true;
-
-            //Debug.Log("いいぞ。3");
-        }
-        else
-        {
-            FindObjectOfType<Spone>().trgGhost = false;
-        }
-    }
-
-    //キラキラを出現させる
-    void ShineCreate()
-    {
-        if (bodyPos[(int)Kinect.JointType.ThumbLeft].y > bodyPos[(int)Kinect.JointType.HandLeft].y + 0.5f &&
-           bodyPos[(int)Kinect.JointType.HandLeft].z > bodyPos[(int)Kinect.JointType.ElbowLeft].z - 1.5f &&
-           bodyPos[(int)Kinect.JointType.ThumbLeft].y > bodyPos[(int)Kinect.JointType.ElbowLeft].y + 0.5f &&
-           bodyPos[(int)Kinect.JointType.HandLeft].y > bodyPos[(int)Kinect.JointType.SpineBase].y &&
-           bodyPos[(int)Kinect.JointType.HandLeft].y < bodyPos[(int)Kinect.JointType.Neck].y)
-        {
-            FindObjectOfType<Spone>().trgShine = true;
-        }
-    }
-
-    //火を出現
-    void FireCreate()
-    {
-        if (bodyPos[(int)Kinect.JointType.ThumbRight].y > bodyPos[(int)Kinect.JointType.HandRight].y + 0.5f &&
-            bodyPos[(int)Kinect.JointType.HandRight].z < bodyPos[(int)Kinect.JointType.ElbowRight].z - 1.5f &&
-            bodyPos[(int)Kinect.JointType.ThumbRight].y > bodyPos[(int)Kinect.JointType.ElbowRight].y + 0.5f &&
-            bodyPos[(int)Kinect.JointType.HandRight].y > bodyPos[(int)Kinect.JointType.SpineBase].y &&
-            bodyPos[(int)Kinect.JointType.HandRight].y < bodyPos[(int)Kinect.JointType.Neck].y|| 
-            Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            FindObjectOfType<Spone>().trgFire = true;
-        }
-    }
-    //かぼちゃ生成
-    void PumpkinCreate()
-    {
-        if (bodyPos[(int)Kinect.JointType.ElbowRight].y >= bodyPos[(int)Kinect.JointType.ShoulderRight].y &&
-            bodyPos[(int)Kinect.JointType.ElbowLeft].y >= bodyPos[(int)Kinect.JointType.ShoulderLeft].y|| 
+            bodyPos[(int)Kinect.JointType.HandLeft].y >= bodyPos[(int)Kinect.JointType.Head].y|| 
             Input.GetKeyDown(KeyCode.Alpha5))
         {
-            FindObjectOfType<Spone>().trgPumpkin = true;
+            Debug.Log("ツリー出現");
+            FindObjectOfType<Spone>().trgTree = true;
         }
         else
         {
-            FindObjectOfType<Spone>().trgPumpkin = false;
+            FindObjectOfType<Spone>().trgTree = false;
         }
 
     }
 
-    //飴生成
-    void CandyCreate()
+    //雪だるま
+    void SnowManCreate()
     {
-        len = ((bodyPos[(int)Kinect.JointType.WristRight].x - bodyPos[(int)Kinect.JointType.WristLeft].x) * (bodyPos[(int)Kinect.JointType.WristRight].x - bodyPos[(int)Kinect.JointType.WristLeft].x) +
-               (bodyPos[(int)Kinect.JointType.WristRight].y - bodyPos[(int)Kinect.JointType.WristLeft].y) - (bodyPos[(int)Kinect.JointType.WristRight].y - bodyPos[(int)Kinect.JointType.WristLeft].y));
-
-        len2 = ((bodyPos[(int)Kinect.JointType.HandTipRight].x - bodyPos[(int)Kinect.JointType.HandTipLeft].x) * (bodyPos[(int)Kinect.JointType.HandRight].x - bodyPos[(int)Kinect.JointType.HandTipLeft].x) +
-               (bodyPos[(int)Kinect.JointType.HandTipRight].y - bodyPos[(int)Kinect.JointType.HandTipLeft].y) - (bodyPos[(int)Kinect.JointType.HandTipRight].y - bodyPos[(int)Kinect.JointType.HandTipLeft].y));
-
-        if (Spone.pumpkinComboFlg == true)
+        if (bodyPos[(int)Kinect.JointType.ElbowRight].y >= bodyPos[(int)Kinect.JointType.ShoulderRight].y &&
+           bodyPos[(int)Kinect.JointType.ElbowLeft].y >= bodyPos[(int)Kinect.JointType.ShoulderLeft].y)
         {
-            if (Mathf.Sqrt(len) <= 0.5f && Mathf.Sqrt(len2) <= 1.0f
-                ||Input.GetKeyDown(KeyCode.Alpha3))
-            {
-                Debug.Log("皿");
-                FindObjectOfType<Spone>().trgCandy = true;
-            }
-            else
-            {
-                FindObjectOfType<Spone>().trgCandy = false;
-            }
+            FindObjectOfType<Spone>().trgSnowMan = true;
         }
         else
         {
-            FindObjectOfType<Spone>().trgCandy = false;
+            FindObjectOfType<Spone>().trgSnowMan = false;
         }
+
+    }
+
+    //クリスマスボックス
+    void XmasBoxCreate()
+    {
+        if (xmasBoxFlg == false &&
+              bodyPos[(int)Kinect.JointType.ElbowRight].y >= bodyPos[(int)Kinect.JointType.ShoulderRight].y &&
+              bodyPos[(int)Kinect.JointType.ElbowLeft].y >= bodyPos[(int)Kinect.JointType.ShoulderLeft].y)
+        {
+            Debug.Log("肩");
+            xmasBoxFlg = true;
+        }
+        //両手のｙ座標が腰より下で右手と左手が離れていたら
+        if (xmasBoxFlg == true &&
+            bodyPos[(int)Kinect.JointType.HandRight].y <= bodyPos[(int)Kinect.JointType.SpineMid].y &&
+            bodyPos[(int)Kinect.JointType.HandLeft].y <= bodyPos[(int)Kinect.JointType.SpineMid].y &&
+            bodyPos[(int)Kinect.JointType.HandRight].x >= bodyPos[(int)Kinect.JointType.SpineMid].x &&
+            bodyPos[(int)Kinect.JointType.HandLeft].x <= bodyPos[(int)Kinect.JointType.SpineMid].x)
+        {
+            FindObjectOfType<Spone>().trgXmasBox = true;
+            Debug.Log("下");
+        }
+
     }
 
     //右手を上げたらゲームスタート
