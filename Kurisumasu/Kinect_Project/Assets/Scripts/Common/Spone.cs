@@ -72,7 +72,7 @@ public class Spone : MonoBehaviour
         }
 
         //炎の出現処理
-        if(BodySourceView.bodyPos[(int)Kinect.JointType.HandLeft].z > BodySourceView.bodyPos[(int)Kinect.JointType.ShoulderLeft].z + 1)
+        if(BodySourceView.bodyPos[(int)Kinect.JointType.HandRight].z < BodySourceView.bodyPos[(int)Kinect.JointType.ShoulderRight].z - 1)
         {
             trgFire = true;
         }
@@ -122,10 +122,10 @@ public class Spone : MonoBehaviour
         {
             if (ONE)
             {
-                x = BodySourceView.bodyPos[(int)Kinect.JointType.HandLeft].x;
-                y = BodySourceView.bodyPos[(int)Kinect.JointType.HandLeft].y;
+                x = BodySourceView.bodyPos[(int)Kinect.JointType.HandRight].x;
+                y = BodySourceView.bodyPos[(int)Kinect.JointType.HandRight].y;
                 z = 10;
-                Instantiate(FirePrefub,new Vector3(x,y,z),Quaternion.identity);
+                Instantiate(FirePrefub,new Vector3(x,y,10),Quaternion.identity);
                 ONE = false;
             }
         }

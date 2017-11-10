@@ -6,6 +6,7 @@ using Kinect = Windows.Kinect;
 public class Kandle : MonoBehaviour {
 
     public bool candleswitch = false;       //ロウソクに炎がついているかどうか
+    public bool firestop = false;           //炎が２つ出ないようにするスイッチ           
     public GameObject candlefire;
 
 	// Use this for initialization
@@ -19,10 +20,11 @@ public class Kandle : MonoBehaviour {
 
         if (Spone.trgFire == true)
         {
-            Vector2 fpos = GameObject.Find("CampFire(Clone)").transform.position;   //炎のポジション
+            Vector3 fpos = GameObject.Find("CampFire(Clone)").transform.position;   //炎のポジション
 
-            fpos.x = BodySourceView.bodyPos[(int)Kinect.JointType.HandLeft].x;
-            fpos.y = BodySourceView.bodyPos[(int)Kinect.JointType.HandLeft].y;
+            fpos.x = BodySourceView.bodyPos[(int)Kinect.JointType.HandRight].x;
+            fpos.y = BodySourceView.bodyPos[(int)Kinect.JointType.HandRight].y;
+            fpos.z = 10;
 
             GameObject.Find("CampFire(Clone)").transform.position = fpos;
 
@@ -32,10 +34,11 @@ public class Kandle : MonoBehaviour {
             }
         }
 
-        if(candleswitch == true)                                                     //ロウソクに火をつける処理
+        if(candleswitch == true && firestop == false)                                                     //ロウソクに火をつける処理
         {
-            Instantiate(candlefire,new Vector3(cpos.x,cpos.y + 3,10),Quaternion.identity);
+            Instantiate(candlefire,new Vector3(cpos.x,cpos.y + 1.5f,10),Quaternion.identity);
             candleswitch = false;
+            firestop = true;
         }
 	}
 }
