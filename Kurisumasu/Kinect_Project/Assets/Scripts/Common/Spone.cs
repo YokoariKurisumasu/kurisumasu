@@ -29,6 +29,8 @@ public class Spone : MonoBehaviour
     //炎が既にでているかどうかのスイッチ
     public static bool fireswitch = false;
 
+    public static bool cakeFlg = false;
+
     private int count = 0;
     private bool ONE = true;
     private float x = 0;
