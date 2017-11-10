@@ -5,7 +5,7 @@ using Kinect = Windows.Kinect;
 
 public class candle : MonoBehaviour
 {
-    public GameObject flame;
+    /*public GameObject flame;
     public GameObject flame2;
 
     public float len;
@@ -49,7 +49,7 @@ public class candle : MonoBehaviour
             Vector3 firePos = fire.transform.position;
             */
             //一本目のキャンドルと手の座標の位置を比べる
-            len = ((firePos.x - candle1Pos.x) * (firePos.x - candle1Pos.x) +
+            /*len = ((firePos.x - candle1Pos.x) * (firePos.x - candle1Pos.x) +
                    (firePos.y - candle1Pos.y) * (firePos.y - candle1Pos.y));
             Debug.Log(firePos);
             
@@ -94,5 +94,5 @@ public class candle : MonoBehaviour
             candleFlg = true;
         }
         
-    }
+    }*/
 }

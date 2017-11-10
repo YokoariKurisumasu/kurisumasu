@@ -11,12 +11,13 @@ public class Spone : MonoBehaviour
     public GameObject TreePrefub;
     public GameObject SnowManPrefub;
     public GameObject XmasBoxPrefub;
+    public GameObject FirePrefub;
 
     //フラグ
     public bool trgTree = false;
     public bool trgSnowMan = false;
     public bool trgXmasBox = false;
-    public bool trgFire = false;
+    public static bool trgFire = false;
     private float Fz = 5.0f;
 
     //インターバルのやつ
@@ -25,12 +26,8 @@ public class Spone : MonoBehaviour
 
     public float candyTime = 0;
 
-
-    //炎が既にでているかどうかのスイッチ
-    public static bool fireswitch = false;
-
     private int count = 0;
-    private bool ONE = true;
+    public static bool ONE = true;
     private float x = 0;
     private float y = 0;
     private float z = 0;
@@ -71,11 +68,13 @@ public class Spone : MonoBehaviour
 
         if (trgInterval == false)
         {
-   
 
+        }
 
-
-
+        //炎の出現処理
+        if(BodySourceView.bodyPos[(int)Kinect.JointType.HandLeft].z > BodySourceView.bodyPos[(int)Kinect.JointType.ShoulderLeft].z + 1)
+        {
+            trgFire = true;
         }
 
         //ツリー
@@ -116,6 +115,19 @@ public class Spone : MonoBehaviour
                 ONE = false;
             }
 
+        }
+
+        //炎
+        if(trgFire == true)
+        {
+            if (ONE)
+            {
+                x = BodySourceView.bodyPos[(int)Kinect.JointType.HandLeft].x;
+                y = BodySourceView.bodyPos[(int)Kinect.JointType.HandLeft].y;
+                z = 10;
+                Instantiate(FirePrefub,new Vector3(x,y,z),Quaternion.identity);
+                ONE = false;
+            }
         }
 
     }
