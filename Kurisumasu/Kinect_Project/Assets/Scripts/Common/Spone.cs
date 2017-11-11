@@ -11,6 +11,7 @@ public class Spone : MonoBehaviour
     public GameObject TreePrefub;
     public GameObject SnowManPrefub;
     public GameObject XmasBoxPrefub;
+    public GameObject FirePrefub;
 
     //フラグ
     public bool trgTree = false;
@@ -32,7 +33,7 @@ public class Spone : MonoBehaviour
     public static bool cakeFlg = false;
 
     private int count = 0;
-    private bool ONE = true;
+    public bool ONE = true;
     private float x = 0;
     private float y = 0;
     private float z = 0;
@@ -73,11 +74,16 @@ public class Spone : MonoBehaviour
 
         if (trgInterval == false)
         {
-   
 
 
 
 
+
+        }
+        //炎の出現処理
+        if (BodySourceView.bodyPos[(int)Kinect.JointType.HandRight].z < BodySourceView.bodyPos[(int)Kinect.JointType.ShoulderRight].z - 1)
+        {
+            trgFire = true;
         }
 
         //ツリー
@@ -88,13 +94,13 @@ public class Spone : MonoBehaviour
                 x = 2.0f;
                 y = -2.5f;
                 z = 5.0f;
-                Instantiate(TreePrefub, new Vector3(x, y, z), Quaternion.Euler(-90,0,120));
+                Instantiate(TreePrefub, new Vector3(x, y, z), Quaternion.Euler(-90, 0, 120));
                 ONE = false;
             }
         }
 
         //雪だるま
-        if(trgSnowMan == true)
+        if (trgSnowMan == true)
         {
             if (ONE)
             {
@@ -107,7 +113,7 @@ public class Spone : MonoBehaviour
         }
 
         //クリスマスボックスを作成
-        if(trgXmasBox == true)
+        if (trgXmasBox == true)
         {
             if (ONE)
             {
@@ -118,6 +124,18 @@ public class Spone : MonoBehaviour
                 ONE = false;
             }
 
+        }
+        //炎
+        if (trgFire == true)
+        {
+            if (ONE)
+            {
+                x = BodySourceView.bodyPos[(int)Kinect.JointType.HandRight].x;
+                y = BodySourceView.bodyPos[(int)Kinect.JointType.HandRight].y;
+                z = 10;
+                Instantiate(FirePrefub, new Vector3(x, y, 10), Quaternion.identity);
+                ONE = false;
+            }
         }
 
     }
