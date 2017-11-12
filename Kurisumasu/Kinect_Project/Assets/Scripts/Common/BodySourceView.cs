@@ -12,7 +12,12 @@ public class BodySourceView : MonoBehaviour
     public bool startFlg = false;
     private bool ONE = true;
 
-
+    //順序通りに進むように制限をかけるフラグ
+    public bool OneTree = false;
+    public bool TwoSnow = false;
+    public bool ThreeBox = false;
+    public bool FourOpen = false;
+    public bool FiveFire = false;
 
     public static Vector3[] bodyPos = new Vector3[25];
     private ulong active = 0;
@@ -170,9 +175,27 @@ public class BodySourceView : MonoBehaviour
 
         if (bodyTrg == true)
         {
-            TreeCreate();
-            SnowManCreate();
-            XmasBoxCreate();
+
+            if (OneTree == true)
+            {
+                TreeCreate();
+            }
+            if (TwoSnow == true)
+            {
+                SnowManCreate();
+            }
+            if (ThreeBox == true)
+            {
+                XmasBoxCreate();
+            }
+            if (FourOpen == true)
+            {
+                BoxOpen();
+            }
+            if (FiveFire == true)
+            {
+                FireCreate();
+            }
         }
 
     }
@@ -336,6 +359,22 @@ public class BodySourceView : MonoBehaviour
             Debug.Log("下");
         }
 
+    }
+
+    //クリスマスボックスを開封するとき
+    void BoxOpen()
+    {
+
+    }
+
+    //炎
+    void FireCreate()
+    {
+        //炎の出現処理
+        if (BodySourceView.bodyPos[(int)Kinect.JointType.HandRight].z < BodySourceView.bodyPos[(int)Kinect.JointType.ShoulderRight].z - 1)
+        {
+            FindObjectOfType<Spone>().trgFire = true;
+        }
     }
 
     //右手を上げたらゲームスタート

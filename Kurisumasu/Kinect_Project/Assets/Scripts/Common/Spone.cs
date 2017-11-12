@@ -17,7 +17,9 @@ public class Spone : MonoBehaviour
     public bool trgTree = false;
     public bool trgSnowMan = false;
     public bool trgXmasBox = false;
+    public bool trgBoxOpen = false;
     public bool trgFire = false;
+
     private float Fz = 5.0f;
 
     //インターバルのやつ
@@ -125,6 +127,12 @@ public class Spone : MonoBehaviour
             }
 
         }
+
+        if (trgBoxOpen == true)
+        {
+
+        }
+
         //炎
         if (trgFire == true)
         {
