@@ -181,8 +181,6 @@ public class BodySourceView : MonoBehaviour
 
         if (bodyTrg == false)
         {
-<<<<<<< HEAD
-
             if (OneTree == true)
             {
                 TreeCreate();
@@ -203,7 +201,6 @@ public class BodySourceView : MonoBehaviour
             {
                 FireCreate();
             }
-=======
             //startFlgがfalseならTitle関数のみ起動elseならmain部分の関数起動
             if (startFlg == false)
             {
@@ -225,7 +222,6 @@ public class BodySourceView : MonoBehaviour
                 SnowManCreate();
                 XmasBoxCreate();
             }
->>>>>>> origin/miura
         }
 
     }
@@ -403,7 +399,7 @@ public class BodySourceView : MonoBehaviour
         //炎の出現処理
         if (BodySourceView.bodyPos[(int)Kinect.JointType.HandRight].z < BodySourceView.bodyPos[(int)Kinect.JointType.ShoulderRight].z - 1)
         {
-            FindObjectOfType<Spone>().trgFire = true;
+            //FindObjectOfType<Spone>().trgFire = true;
         }
     }
 

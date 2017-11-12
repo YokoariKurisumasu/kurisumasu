@@ -17,13 +17,9 @@ public class Spone : MonoBehaviour
     public bool trgTree = false;
     public bool trgSnowMan = false;
     public bool trgXmasBox = false;
-<<<<<<< HEAD
     public bool trgBoxOpen = false;
-    public bool trgFire = false;
-
-=======
     public static bool trgFire = false;
->>>>>>> origin/miura
+
     private float Fz = 5.0f;
 
     //インターバルのやつ

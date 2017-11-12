@@ -18,7 +18,7 @@ public class Kandle : MonoBehaviour {
 	void Update () {
         Vector3 cpos = transform.position;                                      //ロウソクのポジション
 
-        if (FindObjectOfType<Spone>().trgFire == true)
+        /*if (FindObjectOfType<Spone>().trgFire == true)
         {
             Vector3 fpos = GameObject.Find("CampFire(Clone)").transform.position;   //炎のポジション
 
@@ -33,7 +33,7 @@ public class Kandle : MonoBehaviour {
                 candleswitch = true;
             }
         }
-        
+        */
         if(candleswitch == true && firestop == false)                                                     //ロウソクに火をつける処理
         {
             Instantiate(candlefire,new Vector3(cpos.x,cpos.y + 1.5f,10),Quaternion.identity);
