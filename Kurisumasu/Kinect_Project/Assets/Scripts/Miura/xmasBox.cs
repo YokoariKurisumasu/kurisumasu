@@ -76,9 +76,9 @@ public class xmasBox : MonoBehaviour
         //grabFlgがtrueで手の座標がプレゼントボックスの座標に近づいたらプレゼントボックスの座標を右手の座標に常に更新
         if (grabFlg == true && Mathf.Sqrt(len2) <= 2.0f)
         {
-            xmasBoxPos.x = BodySourceView.bodyPos[(int)Kinect.JointType.WristRight].x;
+            //xmasBoxPos.x = BodySourceView.bodyPos[(int)Kinect.JointType.WristRight].x;
             xmasBoxPos.y = BodySourceView.bodyPos[(int)Kinect.JointType.WristRight].y;
-            xmasBoxPos.z = BodySourceView.bodyPos[(int)Kinect.JointType.WristRight].z;
+            //xmasBoxPos.z = BodySourceView.bodyPos[(int)Kinect.JointType.WristRight].z;
         }
 
         if (Mathf.Sqrt(len3) >= cakeDesVal)

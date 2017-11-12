@@ -77,6 +77,11 @@ public class BodySourceView : MonoBehaviour
 
     void Start()
     {
+        Title.SetActive(true);
+        FindObjectOfType<Title>().circle.SetActive(true);
+        FindObjectOfType<Title>().gage.SetActive(true);
+        startFlg = false;
+
         treeFlg = 0;
         xmasBoxFlg = false;
 
@@ -84,6 +89,7 @@ public class BodySourceView : MonoBehaviour
 
     void Update()
     {
+        Debug.Log(startFlg);
         if (BodySourceManager == null)
         {
             return;
@@ -173,8 +179,9 @@ public class BodySourceView : MonoBehaviour
 
         //Debug.Log((bodyPos[(int)Kinect.JointType.SpineBase]));
 
-        if (bodyTrg == true)
+        if (bodyTrg == false)
         {
+<<<<<<< HEAD
 
             if (OneTree == true)
             {
@@ -196,6 +203,29 @@ public class BodySourceView : MonoBehaviour
             {
                 FireCreate();
             }
+=======
+            //startFlgがfalseならTitle関数のみ起動elseならmain部分の関数起動
+            if (startFlg == false)
+            {
+                TitlePause();
+            }
+
+            if (startFlg == true)
+            {
+                if (ONE)
+                {
+                    //各タイトルに関連する部分のオブジェクトの表示管理
+                    Title.SetActive(false);
+                    FindObjectOfType<Title>().circle.SetActive(false);
+                    FindObjectOfType<Title>().gage.SetActive(false);
+                    ONE = false;
+
+                }
+                TreeCreate();
+                SnowManCreate();
+                XmasBoxCreate();
+            }
+>>>>>>> origin/miura
         }
 
     }
