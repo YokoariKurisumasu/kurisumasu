@@ -218,9 +218,7 @@ public class BodySourceView : MonoBehaviour
                     ONE = false;
 
                 }
-                TreeCreate();
-                SnowManCreate();
-                XmasBoxCreate();
+
             }
         }
 
@@ -341,6 +339,11 @@ public class BodySourceView : MonoBehaviour
         {
             Debug.Log("ツリー出現");
             FindObjectOfType<Spone>().trgTree = true;
+            
+            //木を出せなくして木を出したときのセリフを表示
+            OneTree = false;
+            FindObjectOfType<Balloon>().trgBalloon[3] = 0;
+            FindObjectOfType<Balloon>().trgBalloon[4] = 1;
         }
         else
         {
@@ -356,6 +359,11 @@ public class BodySourceView : MonoBehaviour
            bodyPos[(int)Kinect.JointType.ElbowLeft].y >= bodyPos[(int)Kinect.JointType.ShoulderLeft].y)
         {
             FindObjectOfType<Spone>().trgSnowMan = true;
+
+            //雪だるまを出せなくして雪だるまを出したときのセリフを表示
+            TwoSnow = false;
+            FindObjectOfType<Balloon>().trgBalloon[5] = 0;
+            FindObjectOfType<Balloon>().trgBalloon[6] = 1;
         }
         else
         {
@@ -383,6 +391,11 @@ public class BodySourceView : MonoBehaviour
         {
             FindObjectOfType<Spone>().trgXmasBox = true;
             Debug.Log("下");
+
+            //プレゼントを出せなくしてプレゼントを出したときのセリフを表示
+            ThreeBox = false;
+            FindObjectOfType<Balloon>().trgBalloon[7] = 0;
+            FindObjectOfType<Balloon>().trgBalloon[8] = 1;
         }
 
     }
@@ -391,6 +404,10 @@ public class BodySourceView : MonoBehaviour
     void BoxOpen()
     {
 
+        //ケーキを出したときのセリフを表示
+        ThreeBox = false;
+        FindObjectOfType<Balloon>().trgBalloon[9] = 0;
+        FindObjectOfType<Balloon>().trgBalloon[10] = 1;
     }
 
     //炎

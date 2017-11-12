@@ -35,9 +35,14 @@ public class Balloon : MonoBehaviour
     //for文に使用
     int i;
 
+    //時間経過
+    int time;
+
     // Use this for initialization
     void Start()
     {
+        time = 0;
+
         //スタート時にセリフトリガーを全て初期化(false)
         for (i = 0; i <= 13; i++) {
             trgBalloon[i] = 0;
@@ -51,7 +56,10 @@ public class Balloon : MonoBehaviour
         trueBalloon();
         //セリフをfalseにする処理
         falseBalloon();
-        
+        //セリフの流れ
+        flowBalloon();
+
+
     }
 
     void trueBalloon()
@@ -228,4 +236,139 @@ public class Balloon : MonoBehaviour
         }
 
     } 
+
+    void flowBalloon()
+    {
+        if (trgBalloon[0] == 1)
+        {
+
+            if (time > 180)
+            {
+                trgBalloon[0] = 0;
+                trgBalloon[1] = 1;
+                time = 0;
+            }
+            else
+            {
+                time++;
+            }
+        }
+
+        if (trgBalloon[1] == 1)
+        {
+
+            if (time > 180)
+            {
+                trgBalloon[1] = 0;
+                trgBalloon[2] = 1;
+                time = 0;
+            }
+            else
+            {
+                time++;
+            }
+        }
+
+        if (trgBalloon[2] == 1)
+        {
+
+            if (time > 180)
+            {
+                trgBalloon[2] = 0;
+                trgBalloon[3] = 1;
+                //開幕３セリフが終わったら木を出せるようになる
+                FindObjectOfType<BodySourceView>().OneTree = true;
+                time = 0;
+            }
+            else
+            {
+                time++;
+            }
+        }
+
+        //木を出し終わった1秒後に雪だるまを出せるようにする
+        if (trgBalloon[4] == 1)
+        {
+
+            if (time > 180)
+            {
+                trgBalloon[4] = 0;
+                trgBalloon[5] = 1;
+                FindObjectOfType<BodySourceView>().TwoSnow = true;
+                time = 0;
+            }
+            else
+            {
+                time++;
+            }
+        }
+
+        //雪だるまを出し終わった1秒後にプレゼントを出せるようにする
+        if (trgBalloon[6] == 1)
+        {
+
+            if (time > 180)
+            {
+                trgBalloon[6] = 0;
+                trgBalloon[7] = 1;
+                FindObjectOfType<BodySourceView>().ThreeBox = true;
+                time = 0;
+            }
+            else
+            {
+                time++;
+            }
+        }
+
+        //プレゼントを出し終わった1秒後にケーキを出せるようにする
+        if (trgBalloon[8] == 1)
+        {
+
+            if (time > 180)
+            {
+                trgBalloon[8] = 0;
+                trgBalloon[9] = 1;
+                FindObjectOfType<BodySourceView>().FourOpen = true;
+                time = 0;
+            }
+            else
+            {
+                time++;
+            }
+        }
+
+        //ケーキを出し終わった1秒後に炎を出せるようにする
+        if (trgBalloon[10] == 1)
+        {
+
+            if (time > 180)
+            {
+                trgBalloon[10] = 0;
+                trgBalloon[11] = 1;
+                FindObjectOfType<BodySourceView>().FiveFire = true;
+                time = 0;
+            }
+            else
+            {
+                time++;
+            }
+        }
+
+        //火をつけ終わった1秒後にゲームクリア
+        if (trgBalloon[12] == 1)
+        {
+
+            if (time > 180)
+            {
+                trgBalloon[12] = 0;
+                trgBalloon[13] = 1;
+                /*ここにゲームクリアのやつ*/
+                time = 0;
+            }
+            else
+            {
+                time++;
+            }
+        }
+    }
 }

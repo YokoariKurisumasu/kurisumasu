@@ -39,6 +39,11 @@ public class Kandle : MonoBehaviour {
             Instantiate(candlefire,new Vector3(cpos.x,cpos.y + 1.5f,10),Quaternion.identity);
             candleswitch = false;
             firestop = true;
+
+            //火を灯したときのセリフを表示
+            FindObjectOfType<BodySourceView>().FiveFire = false;
+            FindObjectOfType<Balloon>().trgBalloon[11] = 0;
+            FindObjectOfType<Balloon>().trgBalloon[12] = 1;
         }
 	}
 }

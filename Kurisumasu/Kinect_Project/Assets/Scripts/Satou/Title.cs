@@ -44,6 +44,9 @@ public class Title : MonoBehaviour {
         if (circleAngle <= -360)
         {
             FindObjectOfType<BodySourceView>().startFlg = true;
+
+            //開幕のセリフを表示
+            FindObjectOfType<Balloon>().trgBalloon[0] = 1;
         }
 
         gage.transform.localEulerAngles = new Vector3(0, 0, circleAngle + 90);
