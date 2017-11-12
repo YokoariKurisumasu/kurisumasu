@@ -40,12 +40,10 @@ public class Title : MonoBehaviour {
         {
             circleAngle -= 2;
         }
-        
 
         if (circleAngle <= -360)
         {
             FindObjectOfType<BodySourceView>().startFlg = true;
-            //SceneManager.LoadScene("SetumeiScene");
         }
 
         gage.transform.localEulerAngles = new Vector3(0, 0, circleAngle + 90);

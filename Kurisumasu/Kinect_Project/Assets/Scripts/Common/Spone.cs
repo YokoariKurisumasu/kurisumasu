@@ -17,7 +17,7 @@ public class Spone : MonoBehaviour
     public bool trgTree = false;
     public bool trgSnowMan = false;
     public bool trgXmasBox = false;
-    public bool trgFire = false;
+    public static bool trgFire = false;
     private float Fz = 5.0f;
 
     //インターバルのやつ
