@@ -410,10 +410,6 @@ public class BodySourceView : MonoBehaviour
     void BoxOpen()
     {
 
-        //ケーキを出したときのセリフを表示
-        ThreeBox = false;
-        FindObjectOfType<Balloon>().trgBalloon[9] = 0;
-        FindObjectOfType<Balloon>().trgBalloon[10] = 1;
     }
 
     //炎

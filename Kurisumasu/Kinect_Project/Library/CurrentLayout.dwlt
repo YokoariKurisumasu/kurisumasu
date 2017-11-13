@@ -20,7 +20,7 @@ MonoBehaviour:
   m_ShowMode: 4
   m_Title: 
   m_RootView: {fileID: 2}
-  m_MinSize: {x: 950, y: 542}
+  m_MinSize: {x: 950, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &2
 MonoBehaviour:
@@ -109,7 +109,7 @@ MonoBehaviour:
   m_MinSize: {x: 683, y: 492}
   m_MaxSize: {x: 14004, y: 14042}
   vertical: 0
-  controlID: 5999
+  controlID: 108
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -133,7 +133,7 @@ MonoBehaviour:
   m_MinSize: {x: 406, y: 492}
   m_MaxSize: {x: 10002, y: 14042}
   vertical: 1
-  controlID: 6000
+  controlID: 109
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -157,7 +157,7 @@ MonoBehaviour:
   m_MinSize: {x: 406, y: 221}
   m_MaxSize: {x: 8006, y: 4021}
   vertical: 0
-  controlID: 6001
+  controlID: 110
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -365,20 +365,20 @@ MonoBehaviour:
     height: 420
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 
-    m_LastClickedID: 0
-    m_ExpandedIDs: caf7ffff1cf8ffff00000000
+    m_SelectedIDs: 642b0000
+    m_LastClickedID: 11108
+    m_ExpandedIDs: 588efdffd68efdff7eefffffd4efffff00000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: Candle1
-      m_OriginalName: Candle1
+      m_Name: box
+      m_OriginalName: box
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: -2104
+      m_UserData: -161462
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
       m_OriginalEventType: 0
@@ -417,14 +417,14 @@ MonoBehaviour:
     width: 757
     height: 420
   m_SceneLighting: 1
-  lastFramingTime: 5268.7983900438085
+  lastFramingTime: 698.3509101633225
   m_2DMode: 0
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -0.4974959, y: 0.3406706, z: 7.8757296}
+    m_Target: {x: -0.516952, y: -0.4678541, z: 3.087983}
     speed: 2
-    m_Value: {x: -0.4974959, y: 0.3406706, z: 7.8757296}
+    m_Value: {x: -0.516952, y: -0.4678541, z: 3.087983}
   m_RenderMode: 0
   m_ValidateTrueMetals: 0
   m_SceneViewState:
@@ -447,13 +447,13 @@ MonoBehaviour:
       speed: 2
       m_Value: 0
   m_Rotation:
-    m_Target: {x: -0.21481249, y: -0.10611974, z: 0.023486547, w: -0.9705888}
+    m_Target: {x: -0.22164385, y: -0.00000029402779, z: -0.00000003066056, w: -0.9751277}
     speed: 2
-    m_Value: {x: -0.21481249, y: -0.10611974, z: 0.023486547, w: -0.9705888}
+    m_Value: {x: -0.22164385, y: -0.00000029402779, z: -0.00000003066056, w: -0.9751277}
   m_Size:
-    m_Target: 8.057427
+    m_Target: 2.9043608
     speed: 2
-    m_Value: 8.057427
+    m_Value: 2.9043608
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -527,33 +527,33 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 0
     m_Folders:
-    - Assets/Christmas Gifts/Prefabs
+    - Assets/Prefabs
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Christmas Gifts/Prefabs
+  - Assets/Prefabs
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\nwuser.DA\Documents\kurisumasu\Kurisumasu\Kinect_Project
   m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 35}
-    m_SelectedIDs: 062b0000
-    m_LastClickedID: 11014
-    m_ExpandedIDs: 00000000782a0000582b00007e2b0000942b0000b82b0000002c0000d62c00002a2d00003e2d0000ce79000000ca9a3bffffff7f
+    scrollPos: {x: 0, y: 393}
+    m_SelectedIDs: ea270000
+    m_LastClickedID: 10218
+    m_ExpandedIDs: 0000000054260000da270000ea270000082800004a28000058280000c0280000d2290000782a0000ea2a0000042b000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: 
-      m_OriginalName: 
+      m_Name: KinectView
+      m_OriginalName: KinectView
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 0
+      m_UserData: 10180
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 11
+      m_OriginalEventType: 0
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 10}
     m_SearchString: 
@@ -567,7 +567,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000782a0000582b0000702b0000762b00007e2b0000942b00009c2b0000b82b0000002c0000d62c00002a2d0000342d00003e2d000000ca9a3bffffff7f
+    m_ExpandedIDs: 0000000054260000c2270000ea270000082800004a280000c0280000d2290000782a0000ea2a0000042b0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -595,7 +595,7 @@ MonoBehaviour:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
     m_HadKeyboardFocusLastEvent: 1
-    m_ExpandedInstanceIDs: 
+    m_ExpandedInstanceIDs: 00000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 

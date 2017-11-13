@@ -12,6 +12,7 @@ public class Spone : MonoBehaviour
     public GameObject SnowManPrefub;
     public GameObject XmasBoxPrefub;
     public GameObject FirePrefub;
+    public GameObject CakePrefub;
 
     //フラグ
     public bool trgTree = false;
@@ -42,6 +43,9 @@ public class Spone : MonoBehaviour
     private float x = 0;
     private float y = 0;
     private float z = 0;
+    private float cx = 0;
+    private float cy = 0;
+    private float cz = 0;
 
     //n秒ごとに実行する
     public float sTime = 2;
@@ -104,9 +108,9 @@ public class Spone : MonoBehaviour
         {
             if (ONE2)
             {
-                x = Random.Range(-120f, 120f);
-                y = Random.Range(-100f, 100f);
-                z = 149f;
+                x = 1.786f;
+                y = -0.563f;
+                z = 2.801f;
                 Instantiate(SnowManPrefub, new Vector3(x, y, z), Quaternion.identity);
                 ONE2 = false;
             }
@@ -117,10 +121,15 @@ public class Spone : MonoBehaviour
         {
             if (ONE3)
             {
-                x = Random.Range(-120f, 120f);
-                y = Random.Range(-100f, 100f);
-                z = 149f;
+                x = -1.807f;
+                y = -0.602f;
+                z = 2.907f;
+                cx = -1.348f;
+                cy = -0.946f;
+                cz = 3.001f;
                 Instantiate(XmasBoxPrefub, new Vector3(x, y, z), Quaternion.identity);
+                Instantiate(CakePrefub, new Vector3(cx, cy, cz), Quaternion.identity);
+                cakeFlg = true;
                 ONE3 = false;
             }
 

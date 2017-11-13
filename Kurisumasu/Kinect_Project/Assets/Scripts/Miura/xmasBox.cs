@@ -47,7 +47,7 @@ public class xmasBox : MonoBehaviour
 
         if(Spone.cakeFlg == true)
         {
-            GameObject cake = GameObject.Find("cake");
+            GameObject cake = GameObject.Find("cake(Clone)");
             cakePos = cake.transform.position;
 
             len3 = ((xmasBoxPos.x - cakePos.x) * (xmasBoxPos.x - cakePos.x) +
@@ -83,6 +83,10 @@ public class xmasBox : MonoBehaviour
 
         if (Mathf.Sqrt(len3) >= cakeDesVal)
         {
+            //ケーキを出したときのセリフを表示
+            FindObjectOfType<BodySourceView>().ThreeBox = false;
+            FindObjectOfType<Balloon>().trgBalloon[9] = 0;
+            FindObjectOfType<Balloon>().trgBalloon[10] = 1;
             Destroy(gameObject);
         }
 
