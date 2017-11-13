@@ -18,7 +18,7 @@ public class Spone : MonoBehaviour
     public bool trgSnowMan = false;
     public bool trgXmasBox = false;
     public bool trgBoxOpen = false;
-    public static bool trgFire = false;
+    public bool trgFire = false;
 
     private float Fz = 5.0f;
 
@@ -36,6 +36,9 @@ public class Spone : MonoBehaviour
 
     private int count = 0;
     public bool ONE = true;
+    public bool ONE2 = true;
+    public bool ONE3 = true;
+    public bool ONE4 = true;
     private float x = 0;
     private float y = 0;
     private float z = 0;
@@ -82,48 +85,43 @@ public class Spone : MonoBehaviour
 
 
         }
-        //炎の出現処理
-        if (BodySourceView.bodyPos[(int)Kinect.JointType.HandRight].z < BodySourceView.bodyPos[(int)Kinect.JointType.ShoulderRight].z - 1)
-        {
-            trgFire = true;
-        }
 
         //ツリー
         if (trgTree == true)
         {
-            if (ONE)
+            if (ONE4)
             {
-                x = 2.0f;
+                x = -2.0f;
                 y = -2.5f;
                 z = 5.0f;
                 Instantiate(TreePrefub, new Vector3(x, y, z), Quaternion.Euler(-90, 0, 120));
-                ONE = false;
+                ONE4 = false;
             }
         }
 
         //雪だるま
         if (trgSnowMan == true)
         {
-            if (ONE)
+            if (ONE2)
             {
                 x = Random.Range(-120f, 120f);
                 y = Random.Range(-100f, 100f);
                 z = 149f;
                 Instantiate(SnowManPrefub, new Vector3(x, y, z), Quaternion.identity);
-                ONE = false;
+                ONE2 = false;
             }
         }
 
         //クリスマスボックスを作成
         if (trgXmasBox == true)
         {
-            if (ONE)
+            if (ONE3)
             {
                 x = Random.Range(-120f, 120f);
                 y = Random.Range(-100f, 100f);
                 z = 149f;
                 Instantiate(XmasBoxPrefub, new Vector3(x, y, z), Quaternion.identity);
-                ONE = false;
+                ONE3 = false;
             }
 
         }

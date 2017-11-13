@@ -82,6 +82,12 @@ public class BodySourceView : MonoBehaviour
         FindObjectOfType<Title>().gage.SetActive(true);
         startFlg = false;
 
+        OneTree = false;
+        TwoSnow = false;
+        ThreeBox = false;
+        FourOpen = false;
+        FiveFire = false;
+
         treeFlg = 0;
         xmasBoxFlg = false;
 
@@ -179,7 +185,7 @@ public class BodySourceView : MonoBehaviour
 
         //Debug.Log((bodyPos[(int)Kinect.JointType.SpineBase]));
 
-        if (bodyTrg == false)
+        if (bodyTrg == true)
         {
             if (OneTree == true)
             {
@@ -414,9 +420,9 @@ public class BodySourceView : MonoBehaviour
     void FireCreate()
     {
         //炎の出現処理
-        if (BodySourceView.bodyPos[(int)Kinect.JointType.HandRight].z < BodySourceView.bodyPos[(int)Kinect.JointType.ShoulderRight].z - 1)
+        if (BodySourceView.bodyPos[(int)Kinect.JointType.HandRight].z < BodySourceView.bodyPos[(int)Kinect.JointType.ShoulderRight].z - 3)
         {
-            //FindObjectOfType<Spone>().trgFire = true;
+            FindObjectOfType<Spone>().trgFire = true;
         }
     }
 

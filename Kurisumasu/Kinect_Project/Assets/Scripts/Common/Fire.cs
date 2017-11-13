@@ -17,11 +17,18 @@ public class Fire : MonoBehaviour {
     void Update()
     {
         fireTime -= Time.deltaTime;
-        if(fireTime < 5)                //５秒経ったら炎を消す
+        if(fireTime < 0)                //５秒経ったら炎を消す
         {
             fireTime = 5;
-            //Spone.ONE = true;
+            FindObjectOfType<Spone>().ONE = true;
             Destroy(gameObject);
         }
+
+        Vector3 fpos = transform.position;
+        fpos.x = BodySourceView.bodyPos[(int)Kinect.JointType.HandRight].x;
+        fpos.y = BodySourceView.bodyPos[(int)Kinect.JointType.HandRight].y;
+        fpos.z = 10;
+        transform.position = fpos;
+
     }
 }

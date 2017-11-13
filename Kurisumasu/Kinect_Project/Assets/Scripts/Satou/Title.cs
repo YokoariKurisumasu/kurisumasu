@@ -46,7 +46,10 @@ public class Title : MonoBehaviour {
             FindObjectOfType<BodySourceView>().startFlg = true;
 
             //開幕のセリフを表示
-            FindObjectOfType<Balloon>().trgBalloon[0] = 1;
+            if (FindObjectOfType<Balloon>().trgBalloon[0] == 0)
+            {
+                FindObjectOfType<Balloon>().trgBalloon[0] = 1;
+            }
         }
 
         gage.transform.localEulerAngles = new Vector3(0, 0, circleAngle + 90);

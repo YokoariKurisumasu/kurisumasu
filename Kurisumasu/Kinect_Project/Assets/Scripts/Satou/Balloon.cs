@@ -32,11 +32,12 @@ public class Balloon : MonoBehaviour
       1 = true    
     */
 
+    int[] trgTime = new int[14];
     //for文に使用
     int i;
 
     //時間経過
-    int time;
+    public int time;
 
     // Use this for initialization
     void Start()
@@ -46,6 +47,7 @@ public class Balloon : MonoBehaviour
         //スタート時にセリフトリガーを全て初期化(false)
         for (i = 0; i <= 13; i++) {
             trgBalloon[i] = 0;
+            trgTime[i] = 0;
         }
     }
 
@@ -239,14 +241,14 @@ public class Balloon : MonoBehaviour
 
     void flowBalloon()
     {
-        if (trgBalloon[0] == 1)
+
+        if (trgBalloon[0] == 1 && trgTime[0] == 0)
         {
 
             if (time > 180)
             {
-                trgBalloon[0] = 0;
                 trgBalloon[1] = 1;
-                time = 0;
+                trgBalloon[0] = 0;
             }
             else
             {
@@ -254,14 +256,14 @@ public class Balloon : MonoBehaviour
             }
         }
 
-        if (trgBalloon[1] == 1)
+        if (trgBalloon[1] == 1 && trgTime[0] == 0)
         {
 
-            if (time > 180)
+            if (time > 360)
             {
                 trgBalloon[1] = 0;
                 trgBalloon[2] = 1;
-                time = 0;
+                //time = 0;
             }
             else
             {
@@ -269,15 +271,16 @@ public class Balloon : MonoBehaviour
             }
         }
 
-        if (trgBalloon[2] == 1)
+        if (trgBalloon[2] == 1 && trgTime[0] == 0)
         {
 
-            if (time > 180)
+            if (time > 540)
             {
                 trgBalloon[2] = 0;
                 trgBalloon[3] = 1;
                 //開幕３セリフが終わったら木を出せるようになる
                 FindObjectOfType<BodySourceView>().OneTree = true;
+                trgTime[0] = 1;
                 time = 0;
             }
             else
@@ -287,7 +290,7 @@ public class Balloon : MonoBehaviour
         }
 
         //木を出し終わった1秒後に雪だるまを出せるようにする
-        if (trgBalloon[4] == 1)
+        if (trgBalloon[4] == 1 && trgTime[0] == 1)
         {
 
             if (time > 180)
@@ -295,6 +298,7 @@ public class Balloon : MonoBehaviour
                 trgBalloon[4] = 0;
                 trgBalloon[5] = 1;
                 FindObjectOfType<BodySourceView>().TwoSnow = true;
+                trgTime[0] = 2;
                 time = 0;
             }
             else
@@ -370,5 +374,6 @@ public class Balloon : MonoBehaviour
                 time++;
             }
         }
+
     }
 }
